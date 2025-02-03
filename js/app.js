@@ -227,6 +227,8 @@ class PackageTracker {
             setTimeout(() => notification.remove(), 300);
         }, 3000);
     }
+}if (filteredPackages.length === 0) {
+    this.packageGrid.innerHTML = `<p class="no-packages-message">No packages found. Add your first package above!</p>`;
 }
 
 // Initialize the app when the page loads
