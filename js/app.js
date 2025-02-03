@@ -229,7 +229,27 @@ class PackageTracker {
     }
 }if (filteredPackages.length === 0) {
     this.packageGrid.innerHTML = `<p class="no-packages-message">No packages found. Add your first package above!</p>`;
-}
+}document.addEventListener("DOMContentLoaded", () => {
+    const themeToggle = document.getElementById("themeToggle");
+    const body = document.body;
+
+    // Check if the user has a saved theme preference
+    let isDarkMode = localStorage.getItem("theme") === "dark";
+
+    const updateTheme = () => {
+        body.classList.toggle("dark", isDarkMode);
+        themeToggle.setAttribute("aria-pressed", isDarkMode);
+        localStorage.setItem("theme", isDarkMode ? "dark" : "light");
+    };
+
+    themeToggle.addEventListener("click", () => {
+        isDarkMode = !isDarkMode;
+        updateTheme();
+    });
+
+    updateTheme(); // Apply the saved theme on page load
+});
+
 
 // Initialize the app when the page loads
 const packageTracker = new PackageTracker();

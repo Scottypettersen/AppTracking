@@ -38,7 +38,7 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* Enhanced Navigation */
+/* NAVBAR STYLING */
 .navbar {
     background: var(--surface);
     padding: 1rem 0;
@@ -46,7 +46,6 @@ body {
     position: sticky;
     top: 0;
     z-index: 100;
-    backdrop-filter: blur(8px);
 }
 
 .nav-content {
@@ -54,9 +53,62 @@ body {
     margin: 0 auto;
     padding: 0 1.5rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Keeps logo on left, toggle on right */
     align-items: center;
 }
+
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo-icon {
+    width: 28px;
+    height: 28px;
+    color: var(--text);
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background 200ms ease-in-out;
+}
+
+.theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+    .nav-content {
+        padding: 0 1rem;
+    }
+
+    .logo-text {
+        font-size: 1.25rem;
+    }
+
+    .theme-toggle {
+        padding: 0.3rem;
+    }
+}
+
+
 /* Quick Add Section */
 .quick-add-section {
     max-width: 900px;
@@ -536,4 +588,27 @@ select {
     border: 1px solid var(--border);
     border-radius: 12px;
     background: var(--surface);
+}.dark {
+    --background: #0f172a;
+    --surface: #1e293b;
+    --surface-light: #334155;
+    --text: #f8fafc;
+    --text-secondary: #94a3b8;
+    --border: var(--surface-light);
+}
+
+.dark input, .dark select {
+    background: var(--surface-light);
+    border: 1px solid var(--border);
+    color: var(--text);
+}
+
+.dark .search-bar input {
+    background: var(--surface-light);
+    color: var(--text);
+}
+
+.dark .package-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
 }

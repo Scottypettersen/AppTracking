@@ -9,78 +9,27 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-content">
+            <!-- Left Side: Logo -->
             <div class="logo">
-                <svg class="logo-icon" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg class="logo-icon" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
                 </svg>
-                <span>PackageTracker</span>
+                <span class="logo-text">PackageTracker</span>
             </div>
-            <div class="nav-controls">
-                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
-                    </svg>
-                </button>
-            </div>
+    
+            <!-- Right Side: Theme Toggle -->
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" aria-pressed="false">
+                <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+                </svg>
+            </button>
         </div>
     </nav>
-
+    
     <main class="main-container">
-        <!-- Quick Add Section -->
-        <section class="quick-add-section">
-            <h1>Track Your Package</h1>
-            <p class="subtitle">Paste your tracking number and we'll handle the rest</p>
-            
-            <form class="quick-add-form" id="quickAddForm">
-                <div class="input-group">
-                    <div class="tracking-input-wrapper">
-                        <input 
-                            type="text" 
-                            id="trackingInput" 
-                            class="tracking-input"
-                            placeholder="Paste tracking number here" 
-                            required
-                            autocomplete="off"
-                        >
-                            
-                        </div>
-                        <div class="auto-detect-carrier">
-                            <span>Auto-detecting carrier...</span>
-                            <div class="detection-dots">
-                                <span></span><span></span><span></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="carrier-select-wrapper">
-                        <select id="carrierSelect" required aria-label="Select carrier">
-                            <option value="" disabled selected>Carrier</option>
-                            <option value="ups">UPS</option>
-                            <option value="fedex">FedEx</option>
-                            <option value="usps">USPS</option>
-                            <option value="dhl">DHL</option>
-                        </select>
-                        <div class="carrier-icon"></div>
-                    </div>
-
-                    <button type="submit" class="track-button">
-                        <span class="button-text">Track Package</span>
-                        <div class="button-loader"></div>
-                    </button>
-                </div>
-
-                <!-- Form Feedback -->
-                <div class="form-feedback">
-                    <div class="error-message" role="alert"></div>
-                    <div class="success-message" role="alert"></div>
-                </div>
-            </form>
-        </section>
-
-        <!-- Stats Overview -->
+        <!-- 🆕 Stats Overview - Now Moved Above -->
         <section class="stats-grid">
             <div class="stat-card">
                 <div class="stat-content">
@@ -100,6 +49,55 @@
                     <span class="stat-value" id="deliveredCount">0</span>
                 </div>
             </div>
+        </section>
+
+        <!-- 🆕 Quick Add Section - Now Below -->
+        <section class="quick-add-section">
+            <h1>Track Your Package</h1>
+            <p class="subtitle">Paste your tracking number and we'll handle the rest</p>
+            
+            <form class="quick-add-form" id="quickAddForm">
+                <div class="input-group">
+                    <div class="tracking-input-wrapper">
+                        <input 
+                            type="text" 
+                            id="trackingInput" 
+                            class="tracking-input"
+                            placeholder="Paste tracking number here" 
+                            required
+                            autocomplete="off"
+                        >
+                    </div>
+                    <div class="auto-detect-carrier">
+                        <span>Auto-detecting carrier...</span>
+                        <div class="detection-dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carrier-select-wrapper">
+                    <select id="carrierSelect" required aria-label="Select carrier">
+                        <option value="" disabled selected>Carrier</option>
+                        <option value="ups">UPS</option>
+                        <option value="fedex">FedEx</option>
+                        <option value="usps">USPS</option>
+                        <option value="dhl">DHL</option>
+                    </select>
+                    <div class="carrier-icon"></div>
+                </div>
+
+                <button type="submit" class="track-button">
+                    <span class="button-text">Track Package</span>
+                    <div class="button-loader"></div>
+                </button>
+
+                <!-- Form Feedback -->
+                <div class="form-feedback">
+                    <div class="error-message" role="alert"></div>
+                    <div class="success-message" role="alert"></div>
+                </div>
+            </form>
         </section>
 
         <!-- Package List Section -->
@@ -127,7 +125,6 @@
                     </select>
                 </div>
             </div>
-
             <div class="package-grid" id="packageGrid">
                 <!-- Packages will be added here via JavaScript -->
             </div>
