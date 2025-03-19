@@ -27,6 +27,7 @@
     </nav>
     
     <main class="main-container">
+        <!-- 📦 Shipment Statistics -->
         <section class="stats-grid">
             <div class="stat-card">
                 <div class="stat-content">
@@ -52,39 +53,33 @@
             <h1>Track Your Package</h1>
             <p class="subtitle">Paste your tracking number and we'll handle the rest</p>
             
-            <form class="quick-add-form" id="quickAddForm">
-                <div class="input-group">
-                    <div class="tracking-input-wrapper">
-                        <input type="text" id="trackingInput" class="tracking-input"
-                            placeholder="Paste tracking number here" required autocomplete="off">
-                    </div>
-                    <div class="auto-detect-carrier">
-                        <span>Auto-detecting carrier...</span>
-                        <div class="detection-dots">
-                            <span></span><span></span><span></span>
-                        </div>
-                    </div>
+            <form id="trackingForm" class="quick-add-form">
+                <!-- Tracking Number Input -->
+                <div class="tracking-input-wrapper">
+                    <input type="text" id="trackingInput" class="tracking-input" placeholder="Enter tracking number">
+                    <div class="auto-detect-carrier">Auto-detecting carrier...</div>
                 </div>
-
+            
+                <!-- Carrier Select Dropdown -->
                 <div class="carrier-select-wrapper">
-                    <select id="carrierSelect" required aria-label="Select carrier">
-                        <option value="" disabled selected>Carrier</option>
-                        <option value="ups">UPS</option>
-                        <option value="fedex">FedEx</option>
-                        <option value="usps">USPS</option>
-                        <option value="dhl">DHL</option>
+                    <select id="carrierSelect">
+                        <option value="">Select Carrier</option>
+                        <option value="UPS">UPS</option>
+                        <option value="USPS">USPS</option>
+                        <option value="FedEx">FedEx</option>
+                        <option value="DHL">DHL</option>
                     </select>
                 </div>
-
+            
+                <!-- Package Name Input (Now at the Bottom) -->
+                <div class="package-name-wrapper">
+                    <input type="text" id="packageNameInput" class="tracking-input" placeholder="Enter package name (optional)">
+                </div>
+            
+                <!-- Track Button -->
                 <button type="submit" class="track-button">
                     <span class="button-text">Track Package</span>
-                    <div class="button-loader"></div>
                 </button>
-
-                <div class="form-feedback">
-                    <div class="error-message" role="alert"></div>
-                    <div class="success-message" role="alert"></div>
-                </div>
             </form>
         </section>
 

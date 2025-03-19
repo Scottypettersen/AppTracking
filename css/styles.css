@@ -107,6 +107,76 @@ body {
         padding: 0.3rem;
     }
 }
+/* 📦 Stats Grid */
+.stats-grid {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* 🔹 Individual Stat Card */
+.stat-card {
+    background: var(--surface);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+    min-width: 140px;
+    flex: 1;
+    border: 1px solid var(--border);
+    transition: all 0.2s ease-in-out;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* 🔢 Stat Content */
+.stat-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+/* 📌 Label */
+.stat-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+/* 🔢 Value */
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text);
+}
+
+/* 📱 Mobile Optimizations */
+@media (max-width: 768px) {
+    .stats-grid {
+        flex-direction: column;
+        gap: 0.8rem;
+        align-items: center;
+    }
+
+    .stat-card {
+        width: 100%;
+        text-align: left;
+        padding: 1rem;
+    }
+
+    .stat-content {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
 
 
 /* Quick Add Section */
@@ -345,168 +415,6 @@ body {
     100% { transform: scale(1); }
 }
 
-/* 📦 Your Packages Section */
-.packages-section {
-    max-width: 1200px;
-    margin: 3rem auto;
-    padding: 0 1.5rem;
-}
-
-.packages-section h2 {
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: var(--text);
-}
-
-/* 🔎 Search Bar */
-.search-bar {
-    position: relative;
-    flex: 1;
-    min-width: 300px;
-}
-
-.search-bar input {
-    width: 100%;
-    padding: 0.85rem 1rem;
-    font-size: 1rem;
-    border-radius: 8px;
-    background: var(--surface-light);
-    color: var(--text);
-    border: 1px solid var(--border);
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.search-bar input:focus {
-    border-color: var(--primary-light);
-    box-shadow: 0 0 5px rgba(59, 130, 246, 0.4);
-    outline: none;
-}
-
-/* 📌 Filters & Sorting */
-.controls {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
-}
-
-.filter-select {
-    background: var(--surface);
-    color: var(--text);
-    padding: 0.75rem 1rem;
-    border-radius: 8px;
-    border: 1px solid var(--border);
-    cursor: pointer;
-    font-size: 1rem;
-    transition: all 0.2s ease;
-}
-
-.filter-select:hover, .filter-select:focus {
-    border-color: var(--primary-light);
-    box-shadow: 0 0 5px rgba(59, 130, 246, 0.4);
-    outline: none;
-}
-
-/* 📦 Package Grid */
-.package-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 1rem;
-    margin-top: 1rem;
-}
-
-/* 📦 Individual Package Styling */
-.package-card {
-    background: var(--surface-light);
-    border-radius: 10px;
-    padding: 1.2rem;
-    box-shadow: var(--shadow-sm);
-    transition: all 0.2s ease;
-    border: 1px solid var(--border);
-}
-
-.package-card:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
-}
-
-/* 📌 Package Info Styling */
-.package-info {
-    font-size: 0.95rem;
-    line-height: 1.4;
-    color: var(--text);
-}
-
-.package-info strong {
-    font-weight: 600;
-    color: var(--primary-light);
-}
-
-/* 🔹 Status Label */
-.status-label {
-    font-weight: 600;
-    padding: 0.3rem 0.6rem;
-    border-radius: 6px;
-    display: inline-block;
-    font-size: 0.9rem;
-}
-
-/* 🟢 Status Colors */
-.status-label[data-status="in-transit"] {
-    background: rgba(59, 130, 246, 0.15);
-    color: #3b82f6;
-}
-
-.status-label[data-status="out-for-delivery"] {
-    background: rgba(245, 158, 11, 0.15);
-    color: #f59e0b;
-}
-
-.status-label[data-status="delivered"] {
-    background: rgba(34, 197, 94, 0.15);
-    color: #22c55e;
-}
-
-.status-label[data-status="tracking-created"] {
-    background: rgba(239, 68, 68, 0.15);
-    color: #ef4444;
-}
-
-/* 📌 Empty State Message */
-.no-packages-message {
-    text-align: center;
-    color: var(--text-secondary);
-    font-size: 1.1rem;
-    margin-top: 1.5rem;
-    padding: 1rem;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    background: var(--surface);
-}
-
-/* 📱 Mobile Optimization */
-@media (max-width: 768px) {
-    .packages-section {
-        padding: 0 1rem;
-    }
-
-    .controls {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-
-    .search-bar,
-    .filter-select {
-        width: 100%;
-    }
-
-    .package-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-
 .tracking-input.paste-success {
     animation: pasteSuccess 0.4s ease;
 }
@@ -650,38 +558,158 @@ select {
     pointer-events: none; /* Prevents accidental clicks */
 }
 
-
-/* Stats Grid */
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-    margin: 3rem auto;
-    max-width: 1200px;
-    padding: 0 1.5rem;
-}
-
-.stat-card {
-    background: var(--surface);
-    padding: 1.5rem;
-    border-radius: 12px;
-    border: 1px solid var(--border);
-    transition: all var(--transition);
-}
-
-.stat-card:hover {
-    transform: translateY(-2px);
-    border-color: var(--primary-light);
-    box-shadow: var(--shadow-md);
-}
-
-/* Package Grid Improvements */
+/* 📦 Package Grid Layout Fix */
 .package-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.2rem; /* More breathing room */
+    margin-top: 1rem;
 }
+
+/* 📦 Individual Package Styling */
+.package-card {
+    background: var(--surface-light);
+    border-radius: 10px;
+    padding: 1.2rem;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s ease;
+    border: 1px solid var(--border);
+}
+
+/* 🎨 Improve Hover Effects */
+.package-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(37, 99, 235, 0.2);
+}
+
+/* 🔹 Status Label Fix */
+.status-label {
+    font-weight: 600;
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    display: inline-block;
+    font-size: 0.9rem;
+}
+
+.status-label[data-status="in-transit"] {
+    background: rgba(59, 130, 246, 0.15);
+    color: #3b82f6;
+}
+
+.status-label[data-status="out-for-delivery"] {
+    background: rgba(245, 158, 11, 0.15);
+    color: #f59e0b;
+}
+
+.status-label[data-status="tracking-created"] {
+    background: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+}
+/* 📌 Tutorial Overlay - Dim Background */
+.tutorial-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Subtle dark blur */
+    backdrop-filter: blur(.8px);
+    z-index: 999;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* 🎯 Tutorial Tooltip - Refined Styling */
+.tutorial-tooltip {
+    position: absolute;
+    background: var(--surface-light);
+    color: var(--text);
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
+    font-size: 1rem;
+    text-align: center;
+    max-width: 300px;
+    z-index: 1001;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    border: 1px solid var(--border);
+}
+
+/* ✅ Show Tooltip */
+.tutorial-tooltip.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 🎯 Navigation Buttons - Better Layout */
+.tutorial-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+/* 🔵 Next Button */
+.tutorial-button {
+    background: var(--primary);
+    color: white;
+    padding: 0.7rem 1.4rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out, transform 0.1s ease-in-out;
+    box-shadow: var(--shadow-sm);
+}
+
+.tutorial-button:hover {
+    background: var(--primary-light);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+/* ❌ Skip Button */
+.tutorial-skip {
+    background: var(--error);
+    color: white;
+    padding: 0.7rem 1.4rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out, transform 0.1s ease-in-out;
+    box-shadow: var(--shadow-sm);
+}
+
+.tutorial-skip:hover {
+    background: #dc2626;
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+/* 🟦 Mobile Optimizations */
+@media (max-width: 768px) {
+    .tutorial-tooltip {
+        font-size: 0.9rem;
+        max-width: 260px;
+    }
+
+    .tutorial-buttons {
+        flex-direction: row;
+        gap: 0.5rem;
+    }
+
+    .tutorial-button, .tutorial-skip {
+        font-size: 0.85rem;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+    }
+}
+
+
 
 /* Notification System */
 .notification-container {
@@ -776,33 +804,65 @@ select {
 
 
 
-}.tutorial-tooltip {
-    position: absolute;
-    background: rgba(0, 0, 0, 0.85);
-    color: white;
-    padding: 14px 18px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    font-size: 15px;
+}
+/* 📌 UX Class Project Popup */
+.project-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--surface);
+    color: var(--text);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow-lg);
+    max-width: 90%;
+    width: 400px;
     text-align: center;
-    max-width: 280px;
-    z-index: 1000;
-    transition: opacity 0.3s ease;
+    z-index: 1002;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
 }
 
-.tutorial-button {
-    margin-top: 10px;
-    background: #2563eb;
+.project-popup h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.project-popup p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.popup-close {
+    background: var(--primary);
     color: white;
+    padding: 0.7rem 1.2rem;
     border: none;
-    padding: 8px 14px;
-    border-radius: 6px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background 0.2s ease-in-out;
+    box-shadow: var(--shadow-sm);
 }
 
-.tutorial-button:hover {
-    background: #1d4ed8;
+.popup-close:hover {
+    background: var(--primary-light);
+    box-shadow: var(--shadow-md);
 }
 
+/* 🎯 Exit Animation */
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+}
 
+/* 📱 Mobile Optimization */
+@media (max-width: 480px) {
+    .project-popup {
+        width: 90%;
+        padding: 1.2rem;
+    }
+}
