@@ -1,24 +1,35 @@
 document.addEventListener("DOMContentLoaded", function () {
     const trackingInput = document.getElementById("trackingInput");
     const carrierSelect = document.getElementById("carrierSelect");
-    const packageNameInput = document.getElementById("packageNameInput"); // New input for package name
+    const packageNameInput = document.getElementById("packageNameInput"); // Name input
     const trackButton = document.querySelector(".track-button");
     const packageGrid = document.getElementById("packageGrid");
+    const tutorialToggle = document.getElementById("tutorialToggle"); // New toggle button
 
-    // Fake package data (Simulating real tracking)
+    // Dark Mode Toggle
+    const darkModeToggle = document.getElementById("darkModeToggle");
+    darkModeToggle.addEventListener("click", function () {
+        document.body.classList.toggle("dark");
+        localStorage.setItem("darkMode", document.body.classList.contains("dark"));
+    });
+
+    // Preserve dark mode state
+    if (localStorage.getItem("darkMode") === "true") {
+        document.body.classList.add("dark");
+    }
+
+    // Simulated package data
     let trackedPackages = JSON.parse(localStorage.getItem("trackedPackages")) || [
         { id: "1Z999AA10123456784", carrier: "UPS", status: "In Transit", eta: "March 21, 2025", name: "Gaming Keyboard" },
         { id: "9400110200881234567890", carrier: "USPS", status: "Out for Delivery", eta: "Today", name: "New Phone Case" }
     ];
 
-    // Simulate auto-filling tracking number in the tutorial
     function autofillTracking() {
         trackingInput.value = trackedPackages[0].id;
         carrierSelect.value = trackedPackages[0].carrier.toLowerCase();
         packageNameInput.value = trackedPackages[0].name;
     }
 
-    // Add a new package for tracking
     function addPackage() {
         const trackingNumber = trackingInput.value.trim();
         const carrier = carrierSelect.value.trim();
@@ -39,17 +50,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         trackedPackages.push(newPackage);
         localStorage.setItem("trackedPackages", JSON.stringify(trackedPackages));
-
         renderPackages();
-        showNotification(`Tracking added: ${trackingNumber} (${carrier.toUpperCase()})`, "success");
+        showNotification(`Tracking added: ${packageName}`, "success");
 
-        // Clear input fields
         trackingInput.value = "";
         carrierSelect.value = "";
         packageNameInput.value = "";
     }
 
-    // Render the tracked package list
     function renderPackages() {
         packageGrid.innerHTML = "";
 
@@ -74,7 +82,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Show temporary notification messages
     function showNotification(message, type) {
         const notificationContainer = document.getElementById("notificationContainer");
         const notification = document.createElement("div");
@@ -87,10 +94,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Attach event listener
     trackButton.addEventListener("click", addPackage);
-
-    // Autofill tracking input during tutorial
-    setTimeout(autofillTracking, 1500); // Simulates a delay before filling the form
+    tutorialToggle.addEventListener("click", toggleTutorial); // Tutorial Toggle
 
     // Initial render
     renderPackages();
 });
+
+/* ------------------------------ */
+/* 🔹 2. CSS – Fix Layout & Tutorial */
+/* ------------------------------ */

@@ -37,7 +37,12 @@ body {
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
 }
-
+/* Dark Mode Styles */
+.dark {
+    --background: #0f172a;
+    --surface: #1e293b;
+    --text: #f8fafc;
+}
 /* NAVBAR STYLING */
 .navbar {
     background: var(--surface);
@@ -612,23 +617,21 @@ select {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.4); /* Subtle dark blur */
-    backdrop-filter: blur(.8px);
-    z-index: 999;
+    background: rgba(0, 0, 0, 0.2); /* Lighter blur */
+    backdrop-filter: blur(.3px);
+    z-index: 998;
     transition: opacity 0.3s ease-in-out;
 }
-
-/* 🎯 Tutorial Tooltip - Refined Styling */
 .tutorial-tooltip {
     position: absolute;
-    background: var(--surface-light);
+    background: var(--surface);
     color: var(--text);
-    padding: 1rem 1.5rem;
-    border-radius: 12px;
-    box-shadow: var(--shadow-lg);
-    font-size: 1rem;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow-md);
+    font-size: 0.9rem;
     text-align: center;
-    max-width: 300px;
+    max-width: 260px;
     z-index: 1001;
     opacity: 0;
     transform: translateY(-10px);
@@ -647,7 +650,7 @@ select {
     display: flex;
     justify-content: space-between;
     gap: 0.75rem;
-    margin-top: 1rem;
+    margin-top: 5rem;
 }
 
 /* 🔵 Next Button */
@@ -658,7 +661,7 @@ select {
     font-size: 0.9rem;
     font-weight: 600;
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     cursor: pointer;
     transition: background 0.2s ease-in-out, transform 0.1s ease-in-out;
     box-shadow: var(--shadow-sm);

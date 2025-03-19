@@ -2,7 +2,7 @@
 
 **PackageTracker** is a simple package tracking web app I built as part of my **UX/UI design portfolio** at **Eastern Washington University**. It's a project that combines **clean design, accessibility, and basic front-end development** into a working, user-friendly site.
 
-🌐 **Live Demo**: [Drewkazanis.com](https://drewkazanis.com)
+🌐 **Live Demo**: [PackagerTracker]https://apptrackingv1.netlify.app/)
 🎨 **Portfolio**: [Drew Kazanis](https://drewkazanis.com)
 
 ---
@@ -17,6 +17,7 @@ Right now, the app **lets users add and track shipments** (saved in local storag
 ## **🚀 Features**
 ✅ **Add & Track Packages** – Save tracking numbers and organize shipments  
 ✅ **Dark Mode** – Looks good in both light and dark themes  
+(FIX^^)
 ✅ **Search & Filters** – Quickly find packages by status or date  
 ✅ **Simple & Clean UI** – Designed with accessibility in mind  
 
@@ -29,16 +30,6 @@ Right now, the app **lets users add and track shipments** (saved in local storag
 
 ---
 
-## **📂 How to Use It**
-1️⃣ **Clone the Repo**  
-```sh
-git clone https://github.com/yourusername/PackageTracker.git
-cd PackageTracker
-```
-2️⃣ **Open `index.html` in a browser**  
-3️⃣ **Start tracking packages!**  
-
----
 
 ## **🎨 Design Process**
 1. **Researched package tracking UI/UX best practices**  
@@ -56,10 +47,9 @@ cd PackageTracker
 ---
 
 ## **🤝 About Me**
-I'm **Drew Kazanis**, a **design major at Eastern Washington University** passionate about **UI/UX, web design, and front-end development**. This project is part of my growing **design portfolio**, which you can check out here:
+I'm **Drew Kazanis**, a **design major at Eastern Washington University** passionate about making cool stuff. This project is part of my growing **design portfolio**, which you can check out here:
 
 🌐 **Website**: [Drewkazanis.com](https://drewkazanis.com)  
-🎨 **Portfolio**: [Drew Kazanis](https://drewkazanis.com)  
 
 ---
 
