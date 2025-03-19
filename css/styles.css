@@ -869,3 +869,117 @@ select {
         padding: 1.2rem;
     }
 }
+
+/* 🔹 Fix Search Bar Styling */
+.search-bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 0.85rem 1.2rem 0.85rem 2.8rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    background: var(--surface-light);
+    color: var(--text);
+    border: 1px solid var(--border);
+    transition: border 0.2s ease-in-out;
+}
+
+.search-bar input:focus {
+    border-color: var(--primary-light);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.search-bar svg {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+    pointer-events: none;
+}
+
+/* 🔹 Fix Stats Grid Alignment */
+.stats-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* 🔹 Ensure Input Fields Look Consistent */
+input, select {
+    padding: 0.8rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    transition: border 0.2s ease-in-out;
+}
+
+input:focus, select:focus {
+    border-color: var(--primary-light);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+/* 🔹 Fix First-Time User Popup */
+.project-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--surface);
+    color: var(--text);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow-lg);
+    max-width: 90%;
+    width: 400px;
+    text-align: center;
+    z-index: 1002;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.project-popup h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.project-popup p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.popup-close {
+    background: var(--primary);
+    color: white;
+    padding: 0.7rem 1.2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+    box-shadow: var(--shadow-sm);
+}
+
+.popup-close:hover {
+    background: var(--primary-light);
+    box-shadow: var(--shadow-md);
+}
+

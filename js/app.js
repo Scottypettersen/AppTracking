@@ -1,105 +1,106 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const trackingInput = document.getElementById("trackingInput");
-    const carrierSelect = document.getElementById("carrierSelect");
-    const packageNameInput = document.getElementById("packageNameInput"); // Name input
-    const trackButton = document.querySelector(".track-button");
+document.addEventListener("DOMContentLoaded", () => {
+    const themeToggle = document.getElementById("themeToggle");
+    const body = document.body;
     const packageGrid = document.getElementById("packageGrid");
-    const tutorialToggle = document.getElementById("tutorialToggle"); // New toggle button
+    const trackingForm = document.getElementById("trackingForm");
+    const trackingInput = document.getElementById("trackingInput");
+    const packageNameInput = document.getElementById("packageNameInput");
+    const statusFilter = document.getElementById("statusFilter");
+    const sortPackages = document.getElementById("sortPackages");
+    const notificationContainer = document.getElementById("notificationContainer");
+    const firstTimePopup = document.getElementById("firstTimePopup");
+    const popupCloseBtn = document.querySelector(".popup-close");
 
-    // Dark Mode Toggle
-    const darkModeToggle = document.getElementById("darkModeToggle");
-    darkModeToggle.addEventListener("click", function () {
-        document.body.classList.toggle("dark");
-        localStorage.setItem("darkMode", document.body.classList.contains("dark"));
+    // Dark Mode Toggle - Persist Across Sessions
+    if (localStorage.getItem("darkMode") === "enabled") {
+        body.classList.add("dark");
+    }
+
+    themeToggle.addEventListener("click", () => {
+        body.classList.toggle("dark");
+        if (body.classList.contains("dark")) {
+            localStorage.setItem("darkMode", "enabled");
+        } else {
+            localStorage.removeItem("darkMode");
+        }
+        themeToggle.setAttribute("aria-pressed", body.classList.contains("dark"));
+        themeToggle.classList.add("rotate");
+        setTimeout(() => themeToggle.classList.remove("rotate"), 300);
     });
 
-    // Preserve dark mode state
-    if (localStorage.getItem("darkMode") === "true") {
-        document.body.classList.add("dark");
+    // Fix First-Time User Popup Display & LocalStorage
+    if (!localStorage.getItem("popupDismissed")) {
+        firstTimePopup.classList.add("show");
     }
 
-    // Simulated package data
-    let trackedPackages = JSON.parse(localStorage.getItem("trackedPackages")) || [
-        { id: "1Z999AA10123456784", carrier: "UPS", status: "In Transit", eta: "March 21, 2025", name: "Gaming Keyboard" },
-        { id: "9400110200881234567890", carrier: "USPS", status: "Out for Delivery", eta: "Today", name: "New Phone Case" }
-    ];
+    popupCloseBtn.addEventListener("click", () => {
+        firstTimePopup.classList.remove("show");
+        localStorage.setItem("popupDismissed", "true");
+    });
 
-    function autofillTracking() {
-        trackingInput.value = trackedPackages[0].id;
-        carrierSelect.value = trackedPackages[0].carrier.toLowerCase();
-        packageNameInput.value = trackedPackages[0].name;
-    }
-
-    function addPackage() {
-        const trackingNumber = trackingInput.value.trim();
-        const carrier = carrierSelect.value.trim();
-        const packageName = packageNameInput.value.trim() || "Unnamed Package";
-
-        if (!trackingNumber || !carrier) {
-            showNotification("Please enter a tracking number and select a carrier.", "error");
-            return;
-        }
-
-        const newPackage = {
-            id: trackingNumber,
-            carrier: carrier.toUpperCase(),
-            status: "Tracking Created",
-            eta: "Estimated in 2-3 days",
-            name: packageName
-        };
-
-        trackedPackages.push(newPackage);
-        localStorage.setItem("trackedPackages", JSON.stringify(trackedPackages));
-        renderPackages();
-        showNotification(`Tracking added: ${packageName}`, "success");
-
-        trackingInput.value = "";
-        carrierSelect.value = "";
-        packageNameInput.value = "";
-    }
-
-    function renderPackages() {
-        packageGrid.innerHTML = "";
-
-        if (trackedPackages.length === 0) {
-            packageGrid.innerHTML = `<p class="no-packages-message">No tracked packages yet.</p>`;
-            return;
-        }
-
-        trackedPackages.forEach(pkg => {
-            const packageCard = document.createElement("div");
-            packageCard.classList.add("package-card");
-            packageCard.innerHTML = `
-                <div class="package-info">
-                    <strong>${pkg.name}</strong>
-                    <p><strong>Tracking #:</strong> ${pkg.id}</p>
-                    <p><strong>Carrier:</strong> ${pkg.carrier}</p>
-                    <p class="status-label" data-status="${pkg.status.toLowerCase()}"><strong>Status:</strong> ${pkg.status}</p>
-                    <p><strong>ETA:</strong> ${pkg.eta}</p>
-                </div>
-            `;
-            packageGrid.appendChild(packageCard);
+    // Ensure popup hides properly
+    if (popupCloseBtn) {
+        popupCloseBtn.addEventListener("click", () => {
+            firstTimePopup.style.display = "none";
         });
     }
 
-    function showNotification(message, type) {
-        const notificationContainer = document.getElementById("notificationContainer");
+    // Fix Track Package Button Not Working
+    trackingForm.addEventListener("submit", (e) => {
+        e.preventDefault(); // Prevent page reload
+        if (firstTimePopup.classList.contains("show")) {
+            firstTimePopup.classList.remove("show");
+            localStorage.setItem("popupDismissed", "true");
+        }
+        
+        const trackingNumber = trackingInput.value.trim();
+        const packageName = packageNameInput.value.trim();
+        if (trackingNumber === "") {
+            showNotification("Please enter a tracking number.", "error");
+            return;
+        }
+        addPackage(trackingNumber, packageName);
+        trackingInput.value = "";
+        packageNameInput.value = "";
+        showNotification("Package added successfully!", "success");
+    });
+
+    function addPackage(trackingNumber, packageName) {
+        const packageCard = document.createElement("div");
+        packageCard.className = "package-card";
+        packageCard.setAttribute("data-status", "in-transit");
+        packageCard.innerHTML = `<strong>${packageName || "Unnamed Package"}</strong><p>${trackingNumber}</p>`;
+        packageGrid.appendChild(packageCard);
+    }
+
+    // Sorting logic
+    sortPackages.addEventListener("change", () => {
+        sortPackageList(sortPackages.value);
+    });
+
+    function sortPackageList(criteria) {
+        let packages = Array.from(packageGrid.children);
+        packages.sort((a, b) => {
+            if (criteria === "date") {
+                return new Date(b.dataset.date) - new Date(a.dataset.date);
+            } else if (criteria === "eta") {
+                return new Date(a.dataset.eta) - new Date(b.dataset.eta);
+            } else if (criteria === "carrier") {
+                return a.dataset.carrier.localeCompare(b.dataset.carrier);
+            }
+        });
+        packages.forEach(pkg => packageGrid.appendChild(pkg));
+    }
+
+    // Notification System
+    function showNotification(message, type = "info") {
         const notification = document.createElement("div");
         notification.className = `notification ${type}`;
         notification.textContent = message;
         notificationContainer.appendChild(notification);
-
-        setTimeout(() => notification.remove(), 3000);
+        setTimeout(() => {
+            notification.classList.add("fade-out");
+            setTimeout(() => notification.remove(), 500);
+        }, 3000);
     }
-
-    // Attach event listener
-    trackButton.addEventListener("click", addPackage);
-    tutorialToggle.addEventListener("click", toggleTutorial); // Tutorial Toggle
-
-    // Initial render
-    renderPackages();
 });
-
-/* ------------------------------ */
-/* 🔹 2. CSS – Fix Layout & Tutorial */
-/* ------------------------------ */
